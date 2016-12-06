@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "_LayoutOnlineMath";
+}
+
+<div  ng-app="myApp" ng-controller="myAppCtrl">
+    <div class="body row" id="container">
+        <div id="header-content">
+            <form name="paramForm" novalidate>
+                <ng-include src="'/PartialView/ParamPartial.html'"></ng-include>
+            </form>
+        </div>
+
+
+        <div id="main-content" class="scroll-y" style="padding-left:10%;">
+
+            <div style="float:right;padding-right:2%;">
+                <button type="button" id="togglerRow" class="btn btn-info">
+                    <span class="glyphicon glyphicon-chevron-up"></span> ParamPanel
+                </button>
+            </div>
+            Please input a number: <input type="text" ng-model="numGenerate" size="5">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary" ng-click="generateBatch()" ng-disabled="paramForm.$invalid">Generate</button>
+                <a type="button" class="btn btn-primary" download="autoGenerate{{numGenerate}}.txt" ng-disabled="quesStringBatch.length==0 || paramForm.$invalid" ng-href="{{ blobURL }}">download</a>
+            </div>
+
+            <p ng-repeat="s in quesStringBatch">{{ s }}</p>
+
+
+        </div>
+    </div>
+
+    @*<div class="footer row">
+        <ng-include src="'/angular/partialView/FooterPartial.html'"></ng-include>
+    </div>*@
+
+    <script src="/angular/myJs.js"></script>
+
+</div>

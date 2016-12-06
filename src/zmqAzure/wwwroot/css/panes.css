@@ -1,0 +1,8 @@
+/* Generic pane rules */
+body { margin: 5px; font-family: 'Trebuchet MS',verdana; }
+.row, .col { overflow: hidden; position: absolute; }
+.row { left: 15px; right: 15px; }
+.col { top: 0px; bottom: 0px; }
+.scroll-x { overflow-x: auto; }
+.scroll-y { overflow-y: auto; }
+

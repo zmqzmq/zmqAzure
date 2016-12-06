@@ -39,8 +39,13 @@ namespace zmqAzure
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IDataRepository, DataRepository>();
+
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<MathRecordContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -55,7 +60,7 @@ namespace zmqAzure
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, MathRecordContext mathRecordContext)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -83,6 +88,9 @@ namespace zmqAzure
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //DbInitializer.Initialize(mathRecordContext);
+
         }
     }
 }

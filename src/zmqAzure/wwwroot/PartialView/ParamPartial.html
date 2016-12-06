@@ -1,0 +1,73 @@
+				
+					<p>
+							<input type="checkbox" ng-model="patterns[0].checked" ng-click="setPatternsChecked()" />{{patterns[0].name}}
+							<input type="checkbox" ng-model="patterns[1].checked" ng-click="setPatternsChecked()" />{{patterns[1].name}}
+							numAMin: <input name="numAMin" style="width:80px;" type="number" ng-model="$parent.numAMin" min="{{$parent.numMin}}" max="{{$parent.numAMax}}" required/>
+							 <span style="color:red" ng-show="paramForm.numAMin.$dirty && paramForm.numAMin.$invalid">
+								<span ng-show="paramForm.numAMin.$error.required">numAMin is required.</span>
+								<span ng-show="paramForm.numAMin.$error.number">numAMin must be a number.</span>
+								<span ng-show="paramForm.numAMin.$error.min">the range of numAMin is [{{$parent.numMin}},{{$parent.numAMax}}].</span>
+								<span ng-show="paramForm.numAMin.$error.max">the range of numAMin is [{{$parent.numMin}},{{$parent.numAMax}}].</span>
+							</span>
+							numAMax: <input name="numAMax" style="width:80px;" type="number" ng-model="$parent.numAMax" min="{{$parent.numAMin>$parent.numBMin?$parent.numAMin:$parent.numBMin}}" max="{{$parent.numMax}}" required/>
+							 <span style="color:red" ng-show="paramForm.numAMax.$dirty && paramForm.numAMax.$invalid">
+								<span ng-show="paramForm.numAMax.$error.required">numAMax is required.</span>
+								<span ng-show="paramForm.numAMax.$error.number">numAMax must be a number.</span>								
+								<span ng-show="paramForm.numAMax.$error.min">the range of numAMax is [{{$parent.numAMin>$parent.numBMin?$parent.numAMin:$parent.numBMin}},{{$parent.numMax}}].</span>
+								<span ng-show="paramForm.numAMax.$error.max">the range of numAMax is [{{$parent.numAMin>$parent.numBMin?$parent.numAMin:$parent.numBMin}},{{$parent.numMax}}].</span>
+							</span>							
+							numBMin: <input name="numBMin" style="width:80px;" type="number" ng-model="$parent.numBMin"  min="{{$parent.numMin}}" max="{{$parent.numBMax>$parent.numAMax?$parent.numAMax:$parent.numBMax}}" required/>
+							<span style="color:red" ng-show="paramForm.numBMin.$dirty && paramForm.numBMin.$invalid">
+								<span ng-show="paramForm.numBMin.$error.required">numBMin is required.</span>
+								<span ng-show="paramForm.numBMin.$error.number">numBMin must be a number.</span>
+								<span ng-show="paramForm.numBMin.$error.min">the range of numBMin is [{{$parent.numMin}},{{$parent.numBMax>$parent.numAMax?$parent.numAMax:$parent.numBMax}}].</span>
+								<span ng-show="paramForm.numBMin.$error.max">the range of numBMin is [{{$parent.numMin}},{{$parent.numBMax>$parent.numAMax?$parent.numAMax:$parent.numBMax}}].</span>
+							</span>														
+							numBMax: <input name="numBMax" style="width:80px;" type="number" ng-model="$parent.numBMax" min="{{$parent.numBMin}}" max="{{$parent.numMax}}" required />
+							<span style="color:red" ng-show="paramForm.numBMax.$dirty && paramForm.numBMax.$invalid">
+								<span ng-show="paramForm.numBMax.$error.required">numBMax is required.</span>
+								<span ng-show="paramForm.numBMax.$error.number">numBMax must be a number.</span>
+								<span ng-show="paramForm.numBMax.$error.min">the range of numBMax is [{{$parent.numBMin}},{{$parent.numMax}}].</span>
+								<span ng-show="paramForm.numBMax.$error.max">the range of numBMax is [{{$parent.numBMin}},{{$parent.numMax}}].</span>
+							</span>										
+					</p>
+					<p>
+							<input type="checkbox" ng-model="patterns[2].checked" ng-click="setPatternsChecked()" />{{patterns[2].name}}
+							<input type="checkbox" ng-model="patterns[3].checked" ng-click="setPatternsChecked()" />{{patterns[3].name}}
+							numAMin: <input name="numAMinMD" style="width:80px;" type="number" ng-model="$parent.numAMinMD" min="1" max="{{$parent.numAMaxMD}}" required/>
+							<span style="color:red" ng-show="paramForm.numAMinMD.$dirty && paramForm.numAMinMD.$invalid">
+								<span ng-show="paramForm.numAMinMD.$error.required">numAMinMD is required.</span>
+								<span ng-show="paramForm.numAMinMD.$error.number">numAMinMD must be a number.</span>
+								<span ng-show="paramForm.numAMinMD.$error.min">the range of numAMinMD is [1,{{$parent.numAMaxMD}}].</span>
+								<span ng-show="paramForm.numAMinMD.$error.max">the range of numAMinMD is [1,{{$parent.numAMaxMD}}].</span>
+							</span>															
+							
+							numAMax: <input name="numAMaxMD" style="width:80px;" type="number" ng-model="$parent.numAMaxMD" min="{{$parent.numAMinMD}}" max="{{$parent.numMax}}" required/>
+							<span style="color:red" ng-show="paramForm.numAMaxMD.$dirty && paramForm.numAMaxMD.$invalid">
+								<span ng-show="paramForm.numAMaxMD.$error.required">numAMaxMD is required.</span>
+								<span ng-show="paramForm.numAMaxMD.$error.number">numAMaxMD must be a number.</span>
+								<span ng-show="paramForm.numAMaxMD.$error.min">the range of numAMaxMD is [{{$parent.numAMinMD}},{{$parent.numMax}}].</span>
+								<span ng-show="paramForm.numAMaxMD.$error.max">the range of numAMaxMD is [{{$parent.numAMinMD}},{{$parent.numMax}}].</span>
+							</span>										
+							
+							numBMin: <input name="numBMinMD" style="width:80px;" type="number" ng-model="$parent.numBMinMD" min="1" max="{{$parent.numBMaxMD}}" required/>
+							<span style="color:red" ng-show="paramForm.numBMinMD.$dirty && paramForm.numBMinMD.$invalid">
+								<span ng-show="paramForm.numBMinMD.$error.required">numBMinMD is required.</span>
+								<span ng-show="paramForm.numBMinMD.$error.number">numBMinMD must be a number.</span>
+								<span ng-show="paramForm.numBMinMD.$error.min">the range of numBMinMD is [1,{{$parent.numBMaxMD}}].</span>
+								<span ng-show="paramForm.numBMinMD.$error.max">the range of numBMinMD is [1,{{$parent.numBMaxMD}}].</span>
+							</span>												
+							
+							numBMax: <input name="numBMaxMD" style="width:80px;" type="number" ng-model="$parent.numBMaxMD" min="{{$parent.numBMinMD}}" max="{{$parent.numMax}}" required/>
+							<span style="color:red" ng-show="paramForm.numBMaxMD.$dirty && paramForm.numBMaxMD.$invalid">
+								<span ng-show="paramForm.numBMaxMD.$error.required">numBMaxMD is required.</span>
+								<span ng-show="paramForm.numBMaxMD.$error.number">numBMaxMD must be a number.</span>
+								<span ng-show="paramForm.numBMaxMD.$error.min">the range of numBMaxMD is [{{$parent.numBMinMD}},{{$parent.numMax}}].</span>
+								<span ng-show="paramForm.numBMaxMD.$error.max">the range of numBMaxMD is [{{$parent.numBMinMD}},{{$parent.numMax}}].</span>
+							</span>												
+							
+					</p>
+					<p>
+							<input type="checkbox" ng-model="patterns[4].checked" ng-click="setPatternsChecked()" />{{patterns[4].name}}
+							<input type="checkbox" ng-model="patterns[5].checked" ng-click="setPatternsChecked()" />{{patterns[5].name}} 
+					</p>

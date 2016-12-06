@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/angular/angular.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+
+        <script src="//ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="//ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"
+                asp-fallback-src="~/lib/angular/angular.min.js"
+                asp-fallback-test="window.angular">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    <script src="/angular/myApp.js"></script>
+    <script src="/angular/myAppCtrl.js"></script>
+    <script src="/angular/MathRecordsCtrl.js"></script>
+
+    <link href="/css/panes.css" rel="stylesheet" type="text/css" />
+
+    <style type="text/css" media="screen">
+        #container {
+            overflow: hidden;
+        }
+
+        #header-content {
+            height: 30%;
+            overflow: hidden;
+            padding-left: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            vertical-align: middle;
+            background: lightblue;
+            border: 0px solid blue;
+        }
+
+        #sub-content {
+            float: right;
+            width: 30%;
+            height: 70%;
+            background: lightgrey;
+            overflow: hidden;
+            border: 0px solid red;
+        }
+
+        #main-content {
+            height: 70%;
+            border: 0px solid yellow;
+        }
+
+        #container .shrinkCol {
+            width: 0px;
+        }
+
+        #container .shrinkRow {
+            height: 0px;
+        }
+
+        .body.row {
+            top: 0px;
+            bottom: 30px;
+            padding: 0px;
+            border: 0px solid red;
+        }
+
+        .footer.row {
+            height: 30px;
+            bottom: 0px;
+            line-height: 30px;
+            background: #333;
+            color: white;
+            border: 0px solid green;
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+        @RenderBody()
+    </div>
+
+    <div class="footer row">
+        @Html.Partial("FooterPartial")
+    </div>
+
+        @RenderSection("scripts", required: false)
+</body>
+</html>

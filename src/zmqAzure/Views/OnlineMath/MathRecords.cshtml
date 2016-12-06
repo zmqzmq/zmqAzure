@@ -1,0 +1,47 @@
+﻿@inject UserManager<ApplicationUser> UserManager
+@{
+    Layout = "_LayoutOnlineMath";
+}
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid #e1e1e1;
+    }
+
+    th, td {
+        padding: 6px;
+    }
+
+    thead {
+        background-color: #fcfcfc;
+    }
+</style>
+
+<div class="body row">
+    <div class="scroll-y" style="height:100%;" ng-app="myApp" ng-controller="MathRecordsCtrl" usermail="@UserManager.GetUserName(User)">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>UserMail</th>
+                    <th>SessionStart</th>
+                    <th>QuesString</th>
+                    <th>TimeSpendInSecond</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="record in mathRecords">
+                    <td>{{record.mathRecordID}}</td>
+                    <td>{{record.userMail}}</td>
+                    <td>{{record.sessionStart}}</td>
+                    <td>{{record.quesString}}</td>
+                    <td>{{record.timeSpendInSecond}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

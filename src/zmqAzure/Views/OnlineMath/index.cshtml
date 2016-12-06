@@ -1,0 +1,115 @@
+﻿@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    Layout = "_LayoutOnlineMath";
+}
+
+<div ng-app="myApp" ng-controller="myAppCtrl" usermail="@UserManager.GetUserName(User)">
+
+<div class="body row" id="container">
+    <div id="header-content">
+        <form name="paramForm" novalidate>
+            <ng-include src="'/PartialView/ParamPartial.html'"></ng-include>
+        </form>
+    </div>
+
+    <div id="sub-content">
+
+        <div class="panel panel-default" style="height:100%;border:2px solid silver;">
+            <div class="table-responsive" style="margin-right:15px;overflow:hidden;">
+                <table class="table table-condensed table-hover" style="table-layout:fixed;">
+                    <thead>
+                        <tr>
+                            <th>  </th>
+                            <th>Ques</th>
+                            <th>TimeSpend</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <div class="table-responsive" style="overflow:auto;height:92%;" scroll-to-bottom="records.length">
+                <table class="table table-condensed table-hover" style="table-layout:fixed;">
+                    <tbody>
+                        <tr ng-repeat="record in records">
+                            <td>{{record.id}}</td>
+                            <td>{{record.quesString}}</td>
+                            <td>{{record.timeSpend}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-content">
+
+        <div style="float:left;padding:10px;">
+            <p>	timeMax: <input type="text" ng-model="timerCounterMax" size="5" ng-disabled="!ansCorrect"> s	</p>
+        </div>
+
+        <div style="float:right;text-align:right;padding:10px;border:0px solid red;">
+            <div class="btn-group">
+                <button type="button" id="togglerRow" class="btn btn-info">
+                    <span class="glyphicon glyphicon-chevron-up"></span> ParamPanel
+                </button>
+                <button type="button" id="togglerCol" class="btn btn-info">
+                    <span class="glyphicon glyphicon-chevron-right"></span> RecordPanel
+                </button>
+            </div>
+
+        </div>
+
+
+        <div id="nextButton" style="padding:10px;bottom:0px;position:absolute;right:30%;text-align:right;border:0px solid red;">
+            <input type="text" style="text-align:center" ng-model="ansTextBoxInput" ng-change="ansTextBoxInputChange()" ng-disabled="ansCorrect" focus-me="!ansCorrect" size="10">
+            <button type="button" class="btn btn-primary" ng-click="run()" ng-disabled="!ansCorrect || paramForm.$invalid" autofocus focus-me="ansCorrect">{{nextButtonText}}</button>
+            <br>
+            <text ng-hide="timerCounter==0" size="4">{{timerCounter}}</text>
+            <progress value="{{timerCounter}}" max="{{timerCounterMax}}"></progress>
+        </div>
+
+        <br><br><br><br>
+        <div ng-hide="pattern=='FRACTION'||pattern=='FRACTION1'" border="5px solid yellow">
+
+            <p style="text-align:center; font-size:700%;">{{quesString}}</p>
+        </div>
+
+        <table border="0" ng-hide="pattern!='FRACTION'&& pattern!='FRACTION1'" valign="center" align="center">
+            <tr style="font-size:600%;">
+                <td>
+                    <div style="float:left">
+                        <div style="border-bottom:5px solid;text-align:center;">{{numANumerator}}</div>
+                        <div style="text-align:center;">{{numADenominator}}</div>
+                    </div>
+                </td>
+
+                <td>
+                    <div style="float:left;"> &nbsp;=&nbsp;{{factor}}</div>
+                </td>
+                <td>
+                    <div style="float:left">
+                        <div style="border-bottom:5px solid;text-align:center;">{{numBNumerator}}</div>
+                        <div style="text-align:center;">{{numBDenominator}}</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+</div>
+
+
+@*<div class="footer row">
+    <ng-include src="'/angular/partialView/FooterPartial.html'"></ng-include>
+</div>*@
+
+    <script src="/angular/myJs.js"></script>
+
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
